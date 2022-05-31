@@ -24,7 +24,7 @@ export default function MovieCard({ data }) {
         className="w-full sm:h-[150px] md:h-[200px] lg:h-[300px]"
         src={image}
       />
-      <p className="text-white mt-1 font-light text-[20px] text-left">
+      <p className="text-white overflow-hidden truncate w-[full] mt-1 font-light text-[15px] md:text-[20px] text-left">
         {data["name"]}
       </p>
     </div>
