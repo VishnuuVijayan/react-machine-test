@@ -43,17 +43,17 @@ function App() {
   };
 
   return (
-    <div className="App bg-black">
+    <div className="bg-black min-h-screen">
       <Navbar search={search} setSearch={setSearch} genre="Romantic Comedy" />
       {mappableArray().map((item, index) => (
         <React.Fragment key={item.title + index.toString()}>
-          {item["content-items"].content && (
+          {item["content-items"].content.length > 0 && (
             <>
               <div
                 ref={innerRef}
                 id="list-items"
                 className={`grid p-15 grid-cols-3 px-[15px] md:grid-cols-6 ${
-                  item["content-items"].content.length === 0 && "min-h-screen"
+                  item["content-items"].content.length !== 0 && "min-h-screen"
                 }`}
               >
                 {item["content-items"].content.map((item, index) => (
