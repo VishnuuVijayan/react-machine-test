@@ -33,7 +33,7 @@ function App() {
     if (isBottom(el) && !allLoaded) {
       fetchListings(pageNumber)(dispatch);
     }
-  }, [pageNumber, dispatch]);
+  }, [allLoaded, pageNumber, dispatch]);
 
   React.useEffect(() => {
     document.addEventListener("scroll", trackScrolling);
@@ -61,7 +61,7 @@ function App() {
                 ref={innerRef}
                 id="list-items"
                 className={`grid p-15 grid-cols-3 px-[15px] md:grid-cols-6 ${
-                  item["content-items"].content.length !== 0 && "min-h-screen"
+                  item["content-items"].content.length === 0 && "min-h-screen"
                 }`}
               >
                 {item["content-items"].content.map((item, index) => (
