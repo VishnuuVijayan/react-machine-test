@@ -1,50 +1,78 @@
 import "./App.css";
 import Navbar from "./components/Navbar";
 import MovieCard from "./components/MovieCard";
-// import { data } from "./data";
 import React from "react";
-// import firstData from "./data/CONTENTLISTINGPAGE-PAGE1.json";
-// import secondData from "./data/CONTENTLISTINGPAGE-PAGE2.json";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchListings } from "./actions/listingActions";
 
 function App() {
   const listings = useSelector((store) => store.listings);
-  console.log("Listings:", listings);
+  const [search, setSearch] = React.useState("");
   const pageNumber = useSelector((store) => store.pageNumber);
-  // const loading = useSelector((store) => store.listings.loading);
+  const searchedResults = useSelector((store) => store.searchedResults);
   const allLoaded = useSelector((store) => store.listings.allLoaded);
   const dispatch = useDispatch();
+  const innerRef = React.useRef();
+  // window.onscroll = function () {
+  //   if (
+  //     window.innerHeight + document.documentElement.scrollTop ===
+  //     document.documentElement.offsetHeight
+  //   ) {
+  //     if (!allLoaded) fetchListings(pageNumber)(dispatch);
+  //   }
+  // };
+
+  const isBottom = () => {
+    return (
+      innerRef.current.getBoundingClientRect().bottom <= window.innerHeight
+    );
+  };
+
+  const trackScrolling = React.useCallback(() => {
+    const el = document.getElementById("listing-container");
+    if (isBottom(el) && !allLoaded) {
+      fetchListings(pageNumber)(dispatch);
+    }
+  }, [pageNumber, dispatch]);
 
   React.useEffect(() => {
-    console.log("Listings Changed:", listings);
-  }, [listings]);
+    document.addEventListener("scroll", trackScrolling);
+    return () => {
+      document.removeEventListener("scroll", trackScrolling);
+    };
+  }, [trackScrolling, allLoaded, dispatch]);
 
-  window.onscroll = function () {
-    if (
-      window.innerHeight + document.documentElement.scrollTop ===
-      document.documentElement.offsetHeight
-    ) {
-      if (!allLoaded) fetchListings(pageNumber)(dispatch);
+  const mappableArray = () => {
+    if (search === "") {
+      return listings;
+    } else {
+      return searchedResults;
     }
   };
 
   return (
     <div className="App bg-black">
-      {listings.map((item, index) => (
-        <React.Fragment key={item.page.title + index.toString()}>
-          <Navbar genre={item.page.title} />
-          <div
-            id="list-items"
-            className="grid p-15 grid-cols-3 px-[15px] md:grid-cols-6"
-          >
-            {item.page["content-items"].content.map((item, index) => (
-              <MovieCard
-                key={index + item["name"] + item["poster-image"]}
-                data={item}
-              />
-            ))}
-          </div>
+      <Navbar search={search} setSearch={setSearch} genre="Romantic Comedy" />
+      {mappableArray().map((item, index) => (
+        <React.Fragment key={item.title + index.toString()}>
+          {item["content-items"].content && (
+            <>
+              <div
+                ref={innerRef}
+                id="list-items"
+                className={`grid p-15 grid-cols-3 px-[15px] md:grid-cols-6 ${
+                  item["content-items"].content.length !== 0 && "min-h-screen"
+                }`}
+              >
+                {item["content-items"].content.map((item, index) => (
+                  <MovieCard
+                    key={index + item["name"] + item["poster-image"]}
+                    data={item}
+                  />
+                ))}
+              </div>
+            </>
+          )}
         </React.Fragment>
       ))}
     </div>

@@ -12,6 +12,13 @@ export const showListing = (listing) => {
   };
 };
 
+export const searchListings = (text) => {
+  return {
+    type: "SEARCH_LISTINGS",
+    text,
+  };
+};
+
 export const loadingListings = () => {
   return {
     type: "LOADING_LISTINGS",
@@ -25,13 +32,23 @@ export const resetAllLoaded = () => {
 };
 
 export const fetchListings = (pageNumber) => {
-  console.log("Fetching...");
   return (dispatch) => {
     dispatch(loadingListings());
-    const newPage = require(`../data/CONTENTLISTINGPAGE-PAGE${
-      Number(pageNumber) + 1
-    }.json`);
-    console.log("Page NUm:", newPage.page["page-num-requested"]);
-    dispatch(addListings(newPage));
+    let newPage;
+    try {
+      newPage = require(`../data/CONTENTLISTINGPAGE-PAGE${
+        Number(pageNumber) + 1
+      }.json`);
+      dispatch(addListings(newPage.page));
+    } catch (err) {
+      console.log("Error:", err);
+    }
+  };
+};
+
+export const triggerSearch = (text) => {
+  return (dispatch) => {
+    dispatch(loadingListings());
+    dispatch(searchListings(text));
   };
 };
