@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/react-machine-test/static/css/main.8d3fa2d2.css",
+    "main.js": "/react-machine-test/static/js/main.dbebbdd6.js",
+    "static/js/787.eb46dc15.chunk.js": "/react-machine-test/static/js/787.eb46dc15.chunk.js",
+    "static/media/poster2.jpg": "/react-machine-test/static/media/poster2.bf23bfae49d854fec0f2.jpg",
+    "static/media/poster1.jpg": "/react-machine-test/static/media/poster1.d966e333249e4f74e821.jpg",
+    "static/media/poster3.jpg": "/react-machine-test/static/media/poster3.7ee7b802517e3b685aaf.jpg",
+    "static/media/poster5.jpg": "/react-machine-test/static/media/poster5.d0a9cf21d7e7d56979e2.jpg",
+    "static/media/poster8.jpg": "/react-machine-test/static/media/poster8.61013e431fa5ca643217.jpg",
+    "static/media/poster9.jpg": "/react-machine-test/static/media/poster9.080f33854a8c02368de2.jpg",
+    "static/media/poster6.jpg": "/react-machine-test/static/media/poster6.57e30e483bb184bc63b9.jpg",
+    "static/media/poster4.jpg": "/react-machine-test/static/media/poster4.a2f1de9b0f0c656226d7.jpg",
+    "static/media/poster7.jpg": "/react-machine-test/static/media/poster7.8f23c2d5749c68467aaf.jpg",
+    "index.html": "/react-machine-test/index.html",
+    "main.8d3fa2d2.css.map": "/react-machine-test/static/css/main.8d3fa2d2.css.map",
+    "main.dbebbdd6.js.map": "/react-machine-test/static/js/main.dbebbdd6.js.map",
+    "787.eb46dc15.chunk.js.map": "/react-machine-test/static/js/787.eb46dc15.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8d3fa2d2.css",
+    "static/js/main.dbebbdd6.js"
+  ]
+}
