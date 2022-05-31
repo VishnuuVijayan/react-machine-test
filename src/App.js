@@ -13,14 +13,6 @@ function App() {
   const allLoaded = useSelector((store) => store.listings.allLoaded);
   const dispatch = useDispatch();
   const innerRef = React.useRef();
-  // window.onscroll = function () {
-  //   if (
-  //     window.innerHeight + document.documentElement.scrollTop ===
-  //     document.documentElement.offsetHeight
-  //   ) {
-  //     if (!allLoaded) fetchListings(pageNumber)(dispatch);
-  //   }
-  // };
 
   const isBottom = () => {
     return (
