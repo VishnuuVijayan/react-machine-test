@@ -52,7 +52,7 @@ function App() {
               <div
                 ref={innerRef}
                 id="list-items"
-                className={`grid p-15 grid-cols-3 px-[15px] md:grid-cols-6 ${
+                className={`grid grid-cols-3 px-[15px] md:grid-cols-6 ${
                   item["content-items"].content.length !== 0 && "min-h-screen"
                 }`}
               >
